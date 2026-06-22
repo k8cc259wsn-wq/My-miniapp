@@ -1,0 +1,91 @@
+/*
+  Дизайн-токены MassUp.
+
+  Палитра: тёплый угольный фон (не чистый чёрный — мягче для глаз и premium-ощущение),
+  акцент — "ember" — тёплый оранжево-красный, отсылка к энергии/металлу/прогрессу.
+  Вторичный акцент — холодный "steel blue" для второстепенных данных (баланс с ember).
+
+  Типографика: Bebas Neue — для крупных чисел и заголовков (вес, ккал, веса на штанге) —
+  плотный, "спортивный" шрифт, который придаёт цифрам вес и характер.
+  Manrope — для основного текста, читаемый гротеск с тёплым характером.
+*/
+
+:root {
+  /* Цвет */
+  --color-bg: #15120f;
+  --color-bg-elevated: #1d1814;
+  --color-bg-card: #211b16;
+  --color-border: #2e2620;
+  --color-ember: #ff6b35;
+  --color-ember-soft: #ff6b3526;
+  --color-steel: #5b8dee;
+  --color-steel-soft: #5b8dee20;
+  --color-success: #4cb782;
+  --color-text-primary: #f5f1ec;
+  --color-text-secondary: #a89e92;
+  --color-text-muted: #6f655a;
+
+  /* Типографика */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+
+  /* Геометрия */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.35);
+
+  /* Безопасные зоны Telegram Mini App */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Видимый фокус для доступности с клавиатуры */
+:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 2px;
+}
