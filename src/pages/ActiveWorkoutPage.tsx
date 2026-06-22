@@ -50,6 +50,9 @@ export function ActiveWorkoutPage() {
     );
   }
 
+  const currentProgram = program;
+  const currentDay = day;
+
   function handleSetComplete(exerciseIndex: number, setIndex: number, reps: number, weightKg: number) {
     setLogs((prev) => {
       const exerciseSets = [...(prev[exerciseIndex] ?? [])];
@@ -60,7 +63,7 @@ export function ActiveWorkoutPage() {
 
   async function finishWorkout() {
     setSaving(true);
-    const exercises: CompletedExerciseLog[] = day.exercises.map((ex, idx) => ({
+    const exercises: CompletedExerciseLog[] = currentDay.exercises.map((ex, idx) => ({
       exerciseId: ex.exerciseId,
       exerciseName: ex.exerciseName,
       sets: (logs[idx] ?? []).filter(Boolean),
@@ -71,8 +74,8 @@ export function ActiveWorkoutPage() {
     const entry: WorkoutLogEntry = {
       id: generateId(),
       date: todayKey(),
-      programId: program.id,
-      dayTitle: day.title,
+      programId: currentProgram.id,
+      dayTitle: currentDay.title,
       exercises,
       durationMin,
       createdAt: new Date().toISOString(),
@@ -90,10 +93,10 @@ export function ActiveWorkoutPage() {
 
   return (
     <PageContainer>
-      <PageHeader title={day.title} subtitle={`${completedSetsCount} из ${totalSets} подходов выполнено`} />
+      <PageHeader title={currentDay.title} subtitle={`${completedSetsCount} из ${totalSets} подходов выполнено`} />
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {day.exercises.map((exercise, idx) => (
+        {currentDay.exercises.map((exercise, idx) => (
           <ExerciseLogCard
             key={idx}
             exercise={exercise}

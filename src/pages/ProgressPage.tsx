@@ -63,7 +63,7 @@ export function ProgressPage() {
 
   if (!profile) return null;
 
-  const latestWeight = entries.at(-1)?.weightKg ?? profile.weight;
+  const latestWeight = entries.length > 0 ? entries[entries.length - 1].weightKg : profile.weight;
   const startWeight = entries[0]?.weightKg ?? profile.weight;
   const diff = latestWeight - startWeight;
   const photosEntries = entries.filter(

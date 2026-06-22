@@ -1,4 +1,4 @@
-import { cloudStorage } from '../utils/telegram';
+import { cloudStorage } from '@/utils/telegram';
 
 /**
  * Схема ключей CloudStorage.

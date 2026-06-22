@@ -19,11 +19,13 @@ export function ProfilePage() {
 
   if (!profile || !targets) return null;
 
+  const currentProfile = profile;
+
   async function handleSave() {
     await setProfile({
-      ...profile,
-      weight: Number(weight) || profile.weight,
-      targetWeight: Number(targetWeight) || profile.targetWeight,
+      ...currentProfile,
+      weight: Number(weight) || currentProfile.weight,
+      targetWeight: Number(targetWeight) || currentProfile.targetWeight,
       activityLevel,
     });
     setEditing(false);
@@ -31,7 +33,7 @@ export function ProfilePage() {
 
   return (
     <PageContainer>
-      <PageHeader title="Профиль" subtitle={profile.name} />
+      <PageHeader title="Профиль" subtitle={currentProfile.name} />
 
       <Card style={{ marginBottom: 16 }}>
         <div style={{ fontSize: 13, color: 'var(--color-text-secondary)', marginBottom: 10 }}>Суточная норма для набора массы</div>
@@ -45,12 +47,12 @@ export function ProfilePage() {
 
       {!editing ? (
         <Card>
-          <Row label="Пол" value={profile.gender === 'male' ? 'Мужской' : 'Женский'} />
-          <Row label="Возраст" value={`${profile.age} лет`} />
-          <Row label="Рост" value={`${profile.height} см`} />
-          <Row label="Текущий вес" value={`${profile.weight} кг`} />
-          <Row label="Целевой вес" value={`${profile.targetWeight} кг`} />
-          <Row label="Активность" value={ACTIVITY_LABELS[profile.activityLevel]} last />
+          <Row label="Пол" value={currentProfile.gender === 'male' ? 'Мужской' : 'Женский'} />
+          <Row label="Возраст" value={`${currentProfile.age} лет`} />
+          <Row label="Рост" value={`${currentProfile.height} см`} />
+          <Row label="Текущий вес" value={`${currentProfile.weight} кг`} />
+          <Row label="Целевой вес" value={`${currentProfile.targetWeight} кг`} />
+          <Row label="Активность" value={ACTIVITY_LABELS[currentProfile.activityLevel]} last />
           <div style={{ marginTop: 14 }}>
             <Button variant="secondary" fullWidth onClick={() => setEditing(true)}>
               Изменить параметры
